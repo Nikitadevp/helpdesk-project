@@ -1,0 +1,189 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Help Desk Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'dashboard/dashboard.css' %}">
+
+    <!-- Icons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+<div class="layout">
+
+    <!-- ========== LEFT SIDEBAR ========== -->
+    <aside class="sidebar">
+        <h2 class="logo">HelpDesk</h2>
+
+        <ul class="menu">
+            <li>
+                <a href="#topDashboard">
+                    <i class="fa fa-chart-line"></i> Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="#chartSection">
+                    <i class="fa fa-chart-bar"></i> Charts
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main class="content" id="topDashboard">
+
+        <!-- Header -->
+        <div class="header">
+            {% if department %}
+                <h1>{{ department }} Department Dashboard</h1>
+            {% else %}
+                <h1>All Departments Dashboard</h1>
+            {% endif %}
+        </div>
+
+        <!-- ========== FILTERS ========== -->
+        <form method="get" class="filters">
+
+            <select name="department">
+                <option value="">All Departments</option>
+                {% for d in departments %}
+                    <option value="{{ d }}" {% if department == d %}selected{% endif %}>
+                        
+                        {{ d }}
+                    </option>
+                {% endfor %}
+            </select>
+
+            <select name="priority">
+                <option value="">All Priority</option>
+                <option value="Urgent" {% if priority == "Urgent" %}selected{% endif %}>Urgent</option>
+                <option value="Normal" {% if priority == "Normal" %}selected{% endif %}>Normal</option>
+            </select>
+
+            <select name="status">
+                <option value="">All Status</option>
+                <option value="Open" {% if status == "Open" %}selected{% endif %}>Open</option>
+                <option value="Closed" {% if status == "Closed" %}selected{% endif %}>Closed</option>
+            </select>
+
+            <button type="submit">
+                <i class="fa fa-filter"></i> Apply
+            </button>
+        </form>
+
+        <!-- ========== CARDS ========== -->
+        <div class="cards">
+            <div class="card total">
+                <i class="fa fa-layer-group"></i>
+                <span>Total Tickets</span>
+                <b>{{ total_tickets }}</b>
+            </div>
+
+            <div class="card open">
+                <i class="fa fa-folder-open"></i>
+                <span>Open</span>
+                <b>{{ open_tickets }}</b>
+            </div>
+
+            <div class="card closed">
+                <i class="fa fa-circle-check"></i>
+                <span>Closed</span>
+                <b>{{ closed_tickets }}</b>
+            </div>
+
+            <div class="card urgent">
+                <i class="fa fa-triangle-exclamation"></i>
+                <span>Urgent</span>
+                <b>{{ urgent_tickets }}</b>
+            </div>
+        </div>
+
+        <!-- ========== CHART SECTION ========== -->
+`
+       
+
+        <!-- ========== TABLE ========== -->
+        <div class="table-box">
+            <h2>Recent Tickets</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ticket</th>
+                        <th>Name</th>
+                        <th>Department</th>
+                        <th>Priority</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                {% for t in recent_tickets %}
+                    <tr>
+                        <td>
+                            <i class="fa fa-ticket"></i>
+                            {{ t.ticket_no }}
+                        </td>
+                        <td>{{ t.name }}</td>
+                        <td>{{ t.department }}</td>
+
+                        <td>
+                            {% if t.priority == "Urgent" %}
+                                <span class="badge urgent">Urgent</span>
+                            {% else %}
+                                <span class="badge normal">Normal</span>
+                            {% endif %}
+                        </td>
+
+                        <td>
+                            {% if t.status == "Open" %}
+                                <span class="badge open">Open</span>
+                            {% else %}
+                                <span class="badge closed">Closed</span>
+                            {% endif %}
+                        </td>
+
+                        <td>{{ t.created_at|date:"d M Y H:i" }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="6">No tickets found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ========== CHART SECTION ========== -->
+
+        <div class="chart-box" id="chartSection">
+            <h2>Ticket Statistics</h2>
+
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Status Wise Tickets</h3>
+                    <img src="{% static 'dashboard/status_chart.png' %}" alt="Status Chart">
+                </div>   
+                
+                <div class="chart-card">
+                    <h3>Priority Wise Tickets</h3>
+                    <img src="{% static 'dashboard/priority_chart.png' %}" alt="Priority Chart">
+                </div>
+            </div>      
+        </div> 
+
+
+    </main>
+</div>
+
+</body>
+</html>
