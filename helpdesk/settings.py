@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -80,16 +81,24 @@ WSGI_APPLICATION = 'helpdesk.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': os.environ.get('helpdesk_db_6092'),
+#         'USER': os.environ.get('helpdesk_db_6092_user'),
+#         'PASSWORD': os.environ.get('uRNeFqTdOucneShYZGOP5qoHVJ8Q3tXz'),
+#         'HOST': os.environ.get('dpg-d6234lgnputs739e2i4g-a'),
+#         'PORT': os.environ.get('5432'),
+#     }
+# }
+
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('helpdesk_db_6092'),
-        'USER': os.environ.get('helpdesk_db_6092_user'),
-        'PASSWORD': os.environ.get('uRNeFqTdOucneShYZGOP5qoHVJ8Q3tXz'),
-        'HOST': os.environ.get('dpg-d6234lgnputs739e2i4g-a'),
-        'PORT': os.environ.get('5432'),
-    }
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL')
+    )
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
