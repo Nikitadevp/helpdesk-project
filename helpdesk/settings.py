@@ -83,11 +83,11 @@ WSGI_APPLICATION = 'helpdesk.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'helpdesk_db',
-        'USER': 'postgres',
-        'PASSWORD': '1234',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': os.environ.get('helpdesk_db_6092'),
+        'USER': os.environ.get('helpdesk_db_6092_user'),
+        'PASSWORD': os.environ.get('uRNeFqTdOucneShYZGOP5qoHVJ8Q3tXz'),
+        'HOST': os.environ.get('dpg-d6234lgnputs739e2i4g-a'),
+        'PORT': os.environ.get('5432'),
     }
 }
 
