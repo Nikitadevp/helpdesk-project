@@ -275,16 +275,15 @@ def dashboard(request):
     urgent_count = tickets.filter(priority="Urgent").count()
     normal_count = tickets.filter(priority="Normal").count()
 
-    # -------- STATUS CHART --------
-    plt.figure(figsize=(4,3))
-    plt.bar(["Open", "Closed"], [open_count, closed_count],
-        color=["#facc15", "#22c55e"])
-    plt.title("Status Wise Tickets")
-
+    # -------- STATIC DIR SAFE CREATE --------
     static_root = settings.STATIC_ROOT
     dashboard_dir = os.path.join(static_root, "dashboard")
     os.makedirs(dashboard_dir, exist_ok=True)
 
+    # -------- STATUS CHART --------
+    plt.figure(figsize=(4,3))
+    plt.bar(["Open", "Closed"], [open_count, closed_count])
+    plt.title("Status Wise Tickets")
     status_chart_path = os.path.join(dashboard_dir, "status_chart.png")
     plt.tight_layout()
     plt.savefig(status_chart_path)
@@ -292,15 +291,12 @@ def dashboard(request):
 
     # -------- PRIORITY CHART --------
     plt.figure(figsize=(4,3))
-    plt.bar(["Urgent", "Normal"], [urgent_count, normal_count],
-        color=["#ef4444", "#3b82f6"])
+    plt.bar(["Urgent", "Normal"], [urgent_count, normal_count])
     plt.title("Priority Wise Tickets")
-
     priority_chart_path = os.path.join(dashboard_dir, "priority_chart.png")
     plt.tight_layout()
     plt.savefig(priority_chart_path)
     plt.close()
-
 
     
 
@@ -322,15 +318,6 @@ def dashboard(request):
 
 
 
-def charts(request):
-    tickets = Ticket.objects.all()
-
-    context = {
-        "open": tickets.filter(status="Open").count(),
-        "closed": tickets.filter(status="Closed").count(),
-        "urgent": tickets.filter(priority="Urgent").count(),
-    }
-    return render(request, "dashboard/charts.html", context)
 
 
 
