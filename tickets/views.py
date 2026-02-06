@@ -12,6 +12,7 @@ import os
 import matplotlib
 
 
+
 matplotlib.use('Agg') 
 
 
@@ -299,6 +300,9 @@ def dashboard(request):
     plt.tight_layout()
     plt.savefig(priority_chart_path)
     plt.close()
+
+
+    
 
     context = {
         'departments': DEPARTMENTS,
