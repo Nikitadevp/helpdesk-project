@@ -277,14 +277,14 @@ def dashboard(request):
     # -------- STATUS CHART --------
     plt.figure(figsize=(4,3))
     plt.bar(["Open", "Closed"], [open_count, closed_count],
-            color=["#facc15", "#22c55e"])
+        color=["#facc15", "#22c55e"])
     plt.title("Status Wise Tickets")
 
-    status_chart_path = os.path.join(
-        settings.STATICFILES_DIRS[0],
-        "dashboard",
-        "status_chart.png"
-    )
+    static_root = settings.STATIC_ROOT
+    dashboard_dir = os.path.join(static_root, "dashboard")
+    os.makedirs(dashboard_dir, exist_ok=True)
+
+    status_chart_path = os.path.join(dashboard_dir, "status_chart.png")
     plt.tight_layout()
     plt.savefig(status_chart_path)
     plt.close()
@@ -292,14 +292,10 @@ def dashboard(request):
     # -------- PRIORITY CHART --------
     plt.figure(figsize=(4,3))
     plt.bar(["Urgent", "Normal"], [urgent_count, normal_count],
-            color=["#ef4444", "#3b82f6"])
+        color=["#ef4444", "#3b82f6"])
     plt.title("Priority Wise Tickets")
 
-    priority_chart_path = os.path.join(
-        settings.STATICFILES_DIRS[0],
-        "dashboard",
-        "priority_chart.png"
-    )
+    priority_chart_path = os.path.join(dashboard_dir, "priority_chart.png")
     plt.tight_layout()
     plt.savefig(priority_chart_path)
     plt.close()
