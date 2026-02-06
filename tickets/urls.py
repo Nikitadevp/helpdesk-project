@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import raise_ticket, resolve_ticket,dashboard, charts
+from .views import raise_ticket, resolve_ticket,dashboard
 
 
 
@@ -15,7 +15,7 @@ urlpatterns = [
    #path("", dashboard, name="dashboard"),
     path("dashboard/", dashboard, name="dashboard"),
 
-    path("charts/", charts, name="charts"),
+  
     
 
    
