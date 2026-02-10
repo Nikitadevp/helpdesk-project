@@ -29,7 +29,12 @@ SECRET_KEY = os.environ.get('django-insecure-0(s13&9xz$!mt9+^84%)&ymc-w_(m*6y-6#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+#ALLOWED_HOSTS = ["*"]
+
+ALLOWED_HOSTS = [
+    'helpdesk-project-1-tavj.onrender.com',
+    '.onrender.com'
+]
 
 
 # Application definition
