@@ -41,14 +41,12 @@ Including another URLconf
 #     path("admin/", admin.site.urls),
 #     path("tickets/", include("tickets.urls")),
 # ]  
-
 from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import redirect
-from django.urls import reverse
 
 def home_redirect(request):
-    return redirect(reverse("raise_ticket"))
+    return redirect("/tickets/raise-ticket/")
 
 urlpatterns = [
     path("", home_redirect),
