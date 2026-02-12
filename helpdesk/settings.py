@@ -45,10 +45,10 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',  # ← MUST
+    'django.contrib.staticfiles',  
     'tickets',
     
-                         # ← MUST
+                   
 ]
 
 
@@ -68,7 +68,7 @@ ROOT_URLCONF = 'helpdesk.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],   # 👈 empty rehne do
+        'DIRS': [],   # 👈 empty 
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -100,9 +100,18 @@ WSGI_APPLICATION = 'helpdesk.wsgi.application'
 # }
 
 
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default=os.environ.get('DATABASE_URL')
+#     )
+# }
+
+
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL')
+        default=os.environ.get("DATABASE_URL"),
+        conn_max_age=600,
+        ssl_require=True
     )
 }
 
