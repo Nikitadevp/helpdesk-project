@@ -31,12 +31,12 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 DEBUG = False
 
 
-ALLOWED_HOSTS = ["*"]
+#ALLOWED_HOSTS = ["*"]
 
-# ALLOWED_HOSTS = [
-#     'helpdesk-project-1-tavj.onrender.com',
-#     '.onrender.com'
-# ]
+ALLOWED_HOSTS = [
+    'helpdesk-project-1-tavj.onrender.com',
+    '.onrender.com'
+]
 
 
 # Application definition
