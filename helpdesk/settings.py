@@ -31,12 +31,12 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 DEBUG = False
 
 
-#ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["*"]
 
-ALLOWED_HOSTS = [
-    'helpdesk-project-1-tavj.onrender.com',
-    '.onrender.com'
-]
+# ALLOWED_HOSTS = [
+#     'helpdesk-project-1-tavj.onrender.com',
+#     '.onrender.com'
+# ]
 
 
 # Application definition
@@ -118,21 +118,19 @@ WSGI_APPLICATION = 'helpdesk.wsgi.application'
 #     }
 # }
 
+DATABASES = {
+    "default": dj_database_url.config(
+        default=os.environ.get("DATABASE_URL")
+    )
+}
 
 # DATABASES = {
 #     'default': dj_database_url.config(
-#         default=os.environ.get('DATABASE_URL')
+#         default=os.environ.get("DATABASE_URL"),
+#         conn_max_age=600,
+#         ssl_require=True
 #     )
 # }
-
-
-DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get("DATABASE_URL"),
-        conn_max_age=600,
-        ssl_require=True
-    )
-}
 
 
 # Password validation
