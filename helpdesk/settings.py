@@ -111,22 +111,22 @@ WSGI_APPLICATION = 'helpdesk.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': os.environ.get('helpdesk_db_6092'),
-#         'USER': os.environ.get('helpdesk_db_6092_user'),
-#         'PASSWORD': os.environ.get('uRNeFqTdOucneShYZGOP5qoHVJ8Q3tXz'),
-#         'HOST': os.environ.get('dpg-d6234lgnputs739e2i4g-a'),
-#         'PORT': os.environ.get('5432'),
-#     }
-# }
-
 DATABASES = {
-    "default": dj_database_url.config(
-        default=os.environ.get("DATABASE_URL")
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'SYWlZILwtqncwKFzkOgbpLsBRfWhAAlq',
+        'HOST': 'maglev.proxy.rlwy.net',
+        'PORT': '59136',
+    }
 }
+
+# DATABASES = {
+#     "default": dj_database_url.config(
+#         default=os.environ.get("DATABASE_URL")
+#     )
+# }
 
 
 
