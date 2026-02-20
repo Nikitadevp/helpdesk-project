@@ -31,7 +31,9 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 DEBUG = False
 
 
-ALLOWED_HOSTS = ["*"]
+# ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ['.railway.app']
+
 
 # ALLOWED_HOSTS = [
 #     'helpdesk-project-1-tavj.onrender.com',
@@ -61,6 +63,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
     
 ]
 
@@ -124,6 +128,8 @@ DATABASES = {
     )
 }
 
+
+
 # DATABASES = {
 #     'default': dj_database_url.config(
 #         default=os.environ.get("DATABASE_URL"),
@@ -164,13 +170,17 @@ USE_I18N = True
 USE_TZ = True
 
 
-STATIC_URL = '/static/'
+# STATIC_URL = '/static/'
 
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+# STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-STATICFILES_DIRS = [
-    BASE_DIR / 'tickets' / 'static',
-]
+# STATICFILES_DIRS = [
+#     BASE_DIR / 'tickets' / 'static',
+# ]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 
