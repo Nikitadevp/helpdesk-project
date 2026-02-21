@@ -1,2 +1,3 @@
-web: gunicorn helpdesk.wsgi
+web: gunicorn helpdesk.wsgi --bind 0.0.0.0:$PORT
+
 
