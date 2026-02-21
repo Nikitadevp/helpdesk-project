@@ -1,1 +1,2 @@
-web: gunicorn helpdesk.wsgi:application
+web: gunicorn helpdesk.wsgi
+
