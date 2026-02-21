@@ -29,7 +29,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 
 # ALLOWED_HOSTS = ["*"]
@@ -119,7 +119,9 @@ DATABASES = {
         'USER': 'postgres',
         'PASSWORD': 'SYWlZILwtqncwKFzkOgbpLsBRfWhAAlq',
         'HOST': 'maglev.proxy.rlwy.net',
+        # 'PORT': '59136',
         'PORT': '5432',
+
     }
 }
 
