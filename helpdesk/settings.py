@@ -119,7 +119,7 @@ DATABASES = {
         'USER': 'postgres',
         'PASSWORD': 'SYWlZILwtqncwKFzkOgbpLsBRfWhAAlq',
         'HOST': 'maglev.proxy.rlwy.net',
-        'PORT': '59136',
+        'PORT': '5432',
     }
 }
 
